@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedSchedule - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <i class="fas fa-stethoscope"></i>
+                <span>MedSchedule</span>
+            </div>
+            <div class="nav-user">
+                <span id="userFullName"></span>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="dashboard-toggle">
+            <button id="patientViewBtn" class="toggle-btn active">Patient View</button>
+            <button id="doctorViewBtn" class="toggle-btn">Doctor View</button>
+        </div>
+
+        <!-- Patient Dashboard -->
+        <div id="patientDashboard" class="dashboard-view">
+            <h2>Patient Dashboard</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-content">
+                        <h3 id="upcomingAppointments">0</h3>
+                        <p>Upcoming Appointments</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-md"></i></div>
+                    <div class="stat-content">
+                        <h3 id="totalDoctors">0</h3>
+                        <p>Available Doctors</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Book New Appointment</h3>
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="doctorSelect">Select Doctor</label>
+                            <select id="doctorSelect" required>
+                                <option value="">Choose a doctor...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDate">Date</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointmentTime">Available Times</label>
+                        <div id="timeSlots" class="time-slots"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointmentType">Appointment Type</label>
+                        <select id="appointmentType" required>
+                            <option value="consultation">Consultation</option>
+                            <option value="follow-up">Follow-up</option>
+                            <option value="emergency">Emergency</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointmentNotes">Notes (optional)</label>
+                        <textarea id="appointmentNotes" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit">Book Appointment</button>
+                </form>
+            </div>
+
+            <div class="section">
+                <h3>My Appointments</h3>
+                <div id="patientAppointments" class="appointments-list"></div>
+            </div>
+        </div>
+
+        <!-- Doctor Dashboard -->
+        <div id="doctorDashboard" class="dashboard-view" style="display: none;">
+            <h2>Doctor Dashboard</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="stat-content">
+                        <h3 id="todayAppointments">0</h3>
+                        <p>Today's Appointments</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-content">
+                        <h3 id="totalPatients">0</h3>
+                        <p>Total Patients</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-content">
+                        <h3 id="monthlyEarnings">$0</h3>
+                        <p>Monthly Earnings</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>My Schedule</h3>
+                <div id="doctorAppointments" class="appointments-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" style="display: none;"></div>
+    
+    <!--<script src="dashboard.js"></script>-->
+</body>
+</html>
